@@ -157,9 +157,17 @@
 				</div>
 				<div class="slider-wrapper theme-default"
 					style="float: left;position:relative;overflow: hidden; width: 46%;height: 100%; background-color: #1B1714;">
-					<div id="slider" class="nivoSlider"><<img class="nivo-main-image"
-							src="./img/1.png" style="height: 646.662px; overflow: hidden;">
+					<div id="slider" class="nivoSlider">
+						<img class="nivo-main-image"
+							src="./img/1.jpg" style="height: 646.662px; width: 866.662px ; overflow: hidden;">
+						<div class="imgBox">						
+						            <!-- alt：图片路径失败时替换显示内容 -->
+						            <img class="img-slide img" src="./img/1.jpg" style="height: 646.662px; width: 866.662px ; overflow: hidden;" alt="img1">						
+						            <img class="img-slide img" src="./img/2.jpg" style="height: 646.662px; width: 866.662px ;overflow: hidden;" alt="img2">						
+						            <img class="img-slide img" src="./img/3.jpg" style="height: 646.662px; width: 866.662px ;overflow: hidden;" alt="img3">					
+						            <img class="img-slide img" src="./img/4.jpg" style="height: 646.662px; width: 866.662px ;overflow: hidden;" alt="img4">					
 						
+						        </div>
 					</div>
 					<div id="videos" style="height: 82%;position:relative;">
 					</div>
@@ -182,6 +190,28 @@
 		</div>
 		<div id="music">
 		</div>
+		<script type="text/javascript">
+		        // index：索引， len：长度
+		        var index = 0, len;
+		        // 类似获取一个元素数组
+		        var imgBox = document.getElementsByClassName("img-slide");		
+		        len = imgBox.length;		
+		        imgBox[index].style.display = 'block';		
+		        // 逻辑控制函数		
+		        function slideShow() {	
+		            index ++;		
+		            // 防止数组溢出		
+		            if(index >= len) index = 0;		
+		            // 遍历每一个元素		
+		            for(var i=0; i<len; i++) {		
+		                imgBox[i].style.display = 'none';		
+		            }		
+		            // 每次只有一张图片显示		
+		            imgBox[index].style.display = 'block';		
+		        }				         		
+		        // 定时器，间隔3s切换图片
+		        setInterval(slideShow, 3000);
+		    </script>
 		<script>
 			var hotelId;
 
@@ -206,18 +236,18 @@
 			//时间
 			var t = Object.create(timeTemplate)
 			t.init();
-			//房型列表
-			var d = Object.create(datatable);
-			d.hotelId = hotelId;
-			d.init();
+			// //房型列表
+			// var d = Object.create(datatable);
+			// d.hotelId = hotelId;
+			// d.init();
 			//天气
-			var w = Object.create(weatherTemplate)
-			w.hotelId = hotelId;
-			w.init();
-			//图片视频轮播
-			var c = Object.create(carousel);
-			c.hotelId = hotelId;
-			c.init();
+			// var w = Object.create(weatherTemplate)
+			// w.hotelId = hotelId;
+			// w.init();
+			// //图片视频轮播
+			// var c = Object.create(carousel);
+			// c.hotelId = hotelId;
+			// c.init();
 			//底部滚动栏
 			var m = Object.create(MarqueeTemplate);
 			m.hotelId = hotelId;
